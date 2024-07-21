@@ -14,29 +14,34 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 
-    if (argc != 4)
+    if ((argc != 4) && (argc != 5))
     {
         /* -a -> all film , -r -> random film */
+        cout << argc << endl;
         cout << "Uso: " << argv[0] << " <arquivo_entrada>.csv <arquivo_saida>.dat -a" << endl;
-        cout << "Uso: " << argv[0] << " <arquivo_entrada>.csv <arquivo_saida>.dat -r" << endl;
+        cout << "Uso: " << argv[0] << " <arquivo_entrada>.csv <arquivo_saida>.dat -r N" << endl;
         return 1;
     }
 
     string NomeArquivoTexto = argv[1];
     string NomeArquivoBinario = argv[2];
-    string TipoExtracao = argv[3];
+    string tipoExtracao = argv[3];
+
     int num_random = 0;
 
-    if (TipoExtracao.compare("-r") != 0 && TipoExtracao.compare("-a") != 0)
+    if (
+        ((tipoExtracao.compare("-r") == 0) && (argc != 5)) ||
+        ((tipoExtracao.compare("-a") == 0) && (argc != 4)))
     {
         cout << "Erro: Parametro errado!" << endl;
         cout << "Uso: " << argv[0] << " <arquivo_entrada>.csv <arquivo_saida>.dat -a" << endl;
-        cout << "Uso: " << argv[0] << " <arquivo_entrada>.csv <arquivo_saida>.dat -r" << endl;
+        cout << "Uso: " << argv[0] << " <arquivo_entrada>.csv <arquivo_saida>.dat -r N" << endl;
         return 1;
     }
 
-    if (TipoExtracao.compare("-r") == 0)
+    if (tipoExtracao.compare("-a") == 0)
     {
+        cout << "-a" << endl;
     }
 
     /*     ifstream readCSV(NomeArquivoTexto);
